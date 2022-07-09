@@ -1,0 +1,1 @@
+bindgen floui-sys/src/floui.h -o floui-sys/src/floui.rs
