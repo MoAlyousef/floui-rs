@@ -1,0 +1,3 @@
+[submodule "floui-sys/floui"]
+	path = floui-sys/floui
+	url = https://github.com/MoAlyousef/floui
