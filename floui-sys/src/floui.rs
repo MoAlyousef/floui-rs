@@ -15,6 +15,9 @@ extern "C" {
         arg3: *mut ::std::os::raw::c_void,
     ) -> *mut CFlouiViewController;
 }
+extern "C" {
+    pub fn CFlouiViewController_handle_events(arg1: *mut ::std::os::raw::c_void);
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct CWidget {

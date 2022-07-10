@@ -1,4 +1,5 @@
 use floui_sys;
+use std::os::raw::c_void;
 use std::sync::Arc;
 
 pub trait WidgetExt {
@@ -13,18 +14,21 @@ pub struct ViewController {
     inner: Arc<*mut floui_sys::CFlouiViewController>,
 }
 
-pub enum UIViewController {}
-
 impl ViewController {
-    pub fn new(uvc: *mut UIViewController) -> Self {
+    pub fn new(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void) -> Self {
         let inner = unsafe {
             Arc::new(floui_sys::CFlouiViewController_new(
-                uvc as _,
-                std::ptr::null_mut(),
-                std::ptr::null_mut(),
+                arg1,
+                arg2,
+                arg3,
             ))
         };
         Self { inner }
+    }
+    pub fn handle_events(view: *mut c_void) {
+        unsafe {
+            floui_sys::CFlouiViewController_handle_events(view);
+        }
     }
 }
 
@@ -79,7 +83,7 @@ impl Button {
         Self { inner }
     }
 
-    pub fn action<F: 'static + FnMut(&Self)>(&self, cb: F) {
+    pub fn action<F: 'static + FnMut(&Self)>(self, cb: F) -> Self {
         unsafe {
             unsafe extern "C" fn shim(
                 wid: *mut floui_sys::CWidget,
@@ -95,6 +99,7 @@ impl Button {
             let callback: floui_sys::CFlouiCallback = Some(shim);
             floui_sys::CButton_action(*self.inner, callback, data);
         }
+        self
     }
 }
 

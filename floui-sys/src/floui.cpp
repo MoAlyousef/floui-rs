@@ -21,6 +21,10 @@ CFlouiViewController *CFlouiViewController_new(void *arg1, void *arg2, void *arg
     return (CFlouiViewController *)new FlouiViewController(arg1, arg2, arg3);
 }
 
+void CFlouiViewController_handle_events(void *view) {
+    FlouiViewController::handle_events(view);
+}
+
 DEFINE_SHARED_METHODS(CWidget)
 
 CMainView *CMainView_new(const CFlouiViewController *fvc) {

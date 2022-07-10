@@ -22,6 +22,8 @@ typedef struct CFlouiViewController CFlouiViewController;
 
 CFlouiViewController *CFlouiViewController_new(void *, void *, void *);
 
+void CFlouiViewController_handle_events(void *);
+
 typedef struct CWidget CWidget;
 
 DECLARE_SHARED_METHODS(CWidget);
