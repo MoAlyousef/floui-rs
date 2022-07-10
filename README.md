@@ -36,8 +36,8 @@ extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void
 
 ### iOS
 - Add the required ios rustup targets.
-- Add the built library to your xcode project.
-- Modify the library search path to find the library.
+- Add the built library to your xcode project (under Build Phases > Link Binary with Libraries).
+- Modify the library search path to find the library (under Build Settings > Library Search Paths).
 - Modify your ViewController.m file:
 ```objc
 #import "ViewController.h"
