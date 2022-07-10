@@ -44,6 +44,9 @@ pub struct CMainView {
     _unused: [u8; 0],
 }
 extern "C" {
+    pub fn CMainView_new(fvc: *const CFlouiViewController) -> *mut CMainView;
+}
+extern "C" {
     pub fn CMainView_id(self_: *mut CMainView, id: *const ::std::os::raw::c_char);
 }
 extern "C" {
@@ -71,13 +74,86 @@ extern "C" {
 extern "C" {
     pub fn CMainView_spacing(self_: *mut CMainView, spacing: ::std::os::raw::c_int);
 }
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CVStack {
+    _unused: [u8; 0],
+}
 extern "C" {
-    pub fn CMainView_new(fvc: *const CFlouiViewController) -> *mut CMainView;
+    pub fn CVStack_new() -> *mut CVStack;
+}
+extern "C" {
+    pub fn CVStack_id(self_: *mut CVStack, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CVStack_background(self_: *mut CVStack, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CVStack_size(self_: *mut CVStack, w: ::std::os::raw::c_int, h: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CVStack_inner(self_: *mut CVStack) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn CVStack_add(self_: *mut CVStack, w: *const CWidget);
+}
+extern "C" {
+    pub fn CVStack_remove(self_: *mut CVStack, w: *const CWidget);
+}
+extern "C" {
+    pub fn CVStack_clear(self_: *mut CVStack);
+}
+extern "C" {
+    pub fn CVStack_spacing(self_: *mut CVStack, spacing: ::std::os::raw::c_int);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CHStack {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn CHStack_new() -> *mut CHStack;
+}
+extern "C" {
+    pub fn CHStack_id(self_: *mut CHStack, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CHStack_background(self_: *mut CHStack, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CHStack_size(self_: *mut CHStack, w: ::std::os::raw::c_int, h: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CHStack_inner(self_: *mut CHStack) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn CHStack_add(self_: *mut CHStack, w: *const CWidget);
+}
+extern "C" {
+    pub fn CHStack_remove(self_: *mut CHStack, w: *const CWidget);
+}
+extern "C" {
+    pub fn CHStack_clear(self_: *mut CHStack);
+}
+extern "C" {
+    pub fn CHStack_spacing(self_: *mut CHStack, spacing: ::std::os::raw::c_int);
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct CButton {
     _unused: [u8; 0],
+}
+extern "C" {
+    pub fn CButton_id(self_: *mut CButton, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CButton_background(self_: *mut CButton, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CButton_size(self_: *mut CButton, w: ::std::os::raw::c_int, h: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CButton_inner(self_: *mut CButton) -> *mut ::std::os::raw::c_void;
 }
 extern "C" {
     pub fn CButton_new(label: *const ::std::os::raw::c_char) -> *mut CButton;
@@ -89,14 +165,100 @@ extern "C" {
         data: *mut ::std::os::raw::c_void,
     );
 }
+extern "C" {
+    pub fn CButton_filled(self_: *mut CButton);
+}
+extern "C" {
+    pub fn CButton_foreground(self_: *mut CButton, c: ::std::os::raw::c_uint);
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct CText {
     _unused: [u8; 0],
 }
 extern "C" {
+    pub fn CText_id(self_: *mut CText, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CText_background(self_: *mut CText, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CText_size(self_: *mut CText, w: ::std::os::raw::c_int, h: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CText_inner(self_: *mut CText) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
     pub fn CText_new(label: *const ::std::os::raw::c_char) -> *mut CText;
 }
 extern "C" {
     pub fn CText_text(self_: *mut CText, t: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CText_center(self_: *mut CText);
+}
+extern "C" {
+    pub fn CText_bold(self_: *mut CText);
+}
+extern "C" {
+    pub fn CText_foreground(self_: *mut CText, c: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CText_fontsize(self_: *mut CText, size: ::std::os::raw::c_int);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CTextField {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn CTextField_id(self_: *mut CTextField, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CTextField_background(self_: *mut CTextField, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CTextField_size(
+        self_: *mut CTextField,
+        w: ::std::os::raw::c_int,
+        h: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub fn CTextField_inner(self_: *mut CTextField) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn CTextField_new() -> *mut CTextField;
+}
+extern "C" {
+    pub fn CTextField_text(self_: *mut CTextField, t: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CTextField_center(self_: *mut CTextField);
+}
+extern "C" {
+    pub fn CTextField_foreground(self_: *mut CTextField, c: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CTextField_fontsize(self_: *mut CTextField, size: ::std::os::raw::c_int);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CSpacer {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn CSpacer_id(self_: *mut CSpacer, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CSpacer_background(self_: *mut CSpacer, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CSpacer_size(self_: *mut CSpacer, w: ::std::os::raw::c_int, h: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CSpacer_inner(self_: *mut CSpacer) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn CSpacer_new() -> *mut CSpacer;
 }

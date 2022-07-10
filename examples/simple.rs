@@ -1,4 +1,4 @@
-use floui::*;
+use floui::{enums::*, prelude::*, widgets::*};
 use std::cell::RefCell;
 use std::os::raw::c_void;
 use std::rc::Rc;
@@ -15,24 +15,28 @@ extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void
     MainView::new(
         &fvc,
         &[
-            &Button::new("Increment").action({
-                let count = count.clone();
-                move |_| {
+            &Button::new("Increment")
+                .foreground(Color::Blue)
+                .action({
+                    let count = count.clone();
+                    move |_| {
+                        log("Increment clicked");
+                        let mut c = count.borrow_mut();
+                        *c += 1;
+                        let t: Text = from_id("mytext").unwrap();
+                        t.text(&format!("{}", c));
+                    }
+                }),
+            &Text::new("0").id("mytext"),
+            &Button::new("Decrement")
+                .foreground(Color::Red)
+                .action(move |_| {
                     log("Increment clicked");
                     let mut c = count.borrow_mut();
-                    *c += 1;
+                    *c -= 1;
                     let t: Text = from_id("mytext").unwrap();
                     t.text(&format!("{}", c));
-                }
-            }),
-            &Text::new("0").id("mytext"),
-            &Button::new("Decrement").action(move |_| {
-                log("Increment clicked");
-                let mut c = count.borrow_mut();
-                *c -= 1;
-                let t: Text = from_id("mytext").unwrap();
-                t.text(&format!("{}", c));
-            }),
+                }),
         ],
     )
     .underlying() as _

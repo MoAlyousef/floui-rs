@@ -21,9 +21,7 @@ CFlouiViewController *CFlouiViewController_new(void *arg1, void *arg2, void *arg
     return (CFlouiViewController *)new FlouiViewController(arg1, arg2, arg3);
 }
 
-void CFlouiViewController_handle_events(void *view) {
-    FlouiViewController::handle_events(view);
-}
+void CFlouiViewController_handle_events(void *view) { FlouiViewController::handle_events(view); }
 
 DEFINE_SHARED_METHODS(CWidget)
 
@@ -35,6 +33,18 @@ DEFINE_SHARED_METHODS(CMainView)
 
 DEFINE_SHARED_GROUP_METHODS(CMainView)
 
+CVStack *CVStack_new(void) { return (CVStack *)new VStack({}); }
+
+DEFINE_SHARED_METHODS(CVStack)
+
+DEFINE_SHARED_GROUP_METHODS(CVStack)
+
+CHStack *CHStack_new(void) { return (CHStack *)new HStack({}); }
+
+DEFINE_SHARED_METHODS(CHStack)
+
+DEFINE_SHARED_GROUP_METHODS(CHStack)
+
 CButton *CButton_new(const char *label) { return (CButton *)new Button(label); }
 
 DEFINE_SHARED_METHODS(CButton)
@@ -43,8 +53,37 @@ void CButton_action(CButton *self, CFlouiCallback cb, void *data) {
     ((Button *)self)->action([=](Widget &) { (*cb)((CWidget *)self, data); });
 }
 
+void CButton_filled(CButton *self) { ((Button *)self)->filled(); }
+
+void CButton_foreground(CButton *self, unsigned int c) { ((Button *)self)->foreground(c); }
+
 CText *CText_new(const char *label) { return (CText *)new Text(label); }
 
 DEFINE_SHARED_METHODS(CText)
 
 void CText_text(CText *self, const char *t) { ((Text *)self)->text(t); }
+
+void CText_center(CText *self) { ((Text *)self)->center(); }
+
+void CText_bold(CText *self) { ((Text *)self)->bold(); }
+
+void CText_foreground(CText *self, unsigned int c) { ((Text *)self)->foreground(c); }
+
+void CText_fontsize(CText *self, int size) { ((Text *)self)->fontsize(size); }
+
+CTextField *CTextField_new() { return (CTextField *)new TextField(); }
+
+DEFINE_SHARED_METHODS(CTextField)
+
+void CTextField_text(CTextField *self, const char *t) { ((TextField *)self)->text(t); }
+
+void CTextField_center(CTextField *self) { ((TextField *)self)->center(); }
+
+void CTextField_foreground(CTextField *self, unsigned int c) { ((TextField *)self)->foreground(c); }
+
+void CTextField_fontsize(CTextField *self, int size) { ((TextField *)self)->fontsize(size); }
+
+CSpacer *CSpacer_new() { return (CSpacer *)new Spacer(); }
+
+DEFINE_SHARED_METHODS(CSpacer)
+
