@@ -10,12 +10,12 @@ Build your library as a static-lib:
 crate-type = ["static-lib"]
 
 [dependencies]
-floui-rs = { git = "https://github.com/MoAlyousef/floui-rs" }
+floui = { git = "https://github.com/MoAlyousef/floui-rs" }
 ```
 
 ### Rust
 ```rust
-use floui_rs::*;
+use floui::*;
 use std::os::raw::c_void;
 
 #[no_mangle]

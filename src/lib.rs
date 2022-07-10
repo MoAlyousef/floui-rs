@@ -1,12 +1,38 @@
 use floui_sys;
 use std::os::raw::c_void;
 use std::sync::Arc;
+use std::collections::HashMap;
+use std::any::Any;
+use std::sync::Mutex;
+
+lazy_static::lazy_static! {
+    static ref WIDGET_MAP: Mutex<HashMap<&'static str, Box<dyn Any + Send + Sync + 'static>>> = Mutex::new(HashMap::default());
+}
+
+pub fn from_id<T: 'static + WidgetExt + Clone>(id: &str) -> Option<T> {
+    if let Some(w) = WIDGET_MAP.lock().unwrap().get(&id) {
+        if let Some(t) = w.downcast_ref::<T>() {
+            Some(t.clone())
+        } else {
+            None
+        }
+    } else {
+        None
+    }
+}
 
 pub trait WidgetExt {
     fn inner(&self) -> *mut floui_sys::CWidget;
     fn from_widget_ptr(ptr: *mut floui_sys::CWidget) -> Self
     where
         Self: Sized;
+    fn id(self, id: &'static str) -> Self where Self: 'static + Sync + Sized + Clone + Send {
+        WIDGET_MAP
+            .lock()
+            .unwrap()
+            .insert(id, Box::new(self.clone()));
+        self
+    }
 }
 
 #[derive(Clone)]
@@ -37,6 +63,9 @@ pub struct MainView {
     inner: Arc<*mut floui_sys::CMainView>,
 }
 
+unsafe impl Sync for MainView {}
+unsafe impl Send for MainView {}
+
 impl WidgetExt for MainView {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
@@ -64,6 +93,9 @@ impl MainView {
 pub struct Button {
     inner: Arc<*mut floui_sys::CButton>,
 }
+
+unsafe impl Sync for Button {}
+unsafe impl Send for Button {}
 
 impl WidgetExt for Button {
     fn inner(&self) -> *mut floui_sys::CWidget {
@@ -107,6 +139,9 @@ impl Button {
 pub struct Text {
     inner: Arc<*mut floui_sys::CText>,
 }
+
+unsafe impl Sync for Text {}
+unsafe impl Send for Text {}
 
 impl WidgetExt for Text {
     fn inner(&self) -> *mut floui_sys::CWidget {

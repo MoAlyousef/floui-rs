@@ -1,7 +1,8 @@
 [package]
-name = "floui-rs"
+name = "floui"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 floui-sys = { path = "floui-sys" }
+lazy_static = "1.4"
