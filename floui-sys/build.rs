@@ -102,7 +102,7 @@ fn main() {
         println!("cargo:rustc-link-search=native={}", out_dir.display());
         println!("cargo:rustc-link-lib=static=floui");
     } else {
-        println!("cargo:warning=Building against the host jni!");
+        println!("cargo:warning=Building against the host jni and current arch!");
         let host = env::var("HOST").unwrap();
         let host = if host.contains("windows") {
             "win32"
