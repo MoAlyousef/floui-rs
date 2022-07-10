@@ -58,6 +58,7 @@ extern void *floui_main(void *, void *, void *);
 ```
 
 ### Android
+- ANDROID_SDK_ROOT should be set to your android sdk directory.
 - ANDROID_NDK_ROOT should be set to your android ndk directory.
 - Add the required android rustup targets.
 - Create an Android Studio Native C++ project, choose toolchain C++ 17 in the last step.
