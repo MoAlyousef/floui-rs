@@ -32,20 +32,15 @@ fn main() {
             .flag_if_supported("-w")
             .compile("floui");
     } else if target.contains("android") {
+        println!("cargo:rerun-if-changed=CMakeLists.txt");
+        println!("cargo:rerun-if-env-changed=ANDROID_SDK_ROOT");
+        println!("cargo:rerun-if-env-changed=ANDROID_NDK_ROOT");
         let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
         let sdk =
             PathBuf::from(env::var("ANDROID_SDK_ROOT").expect("ANDROID_SDK_ROOT should be set!"));
         let ndk =
             PathBuf::from(env::var("ANDROID_NDK_ROOT").expect("ANDROID_NDK_ROOT should be set!"));
         let target_triple = env::var("TARGET").unwrap();
-        // let include_path = PathBuf::from(include_path);
-        // cc::Build::new()
-        //     .file("src/floui.cpp")
-        //     .cpp(true)
-        //     .include(include_path.join("sysroot/usr/include"))
-        //     .flag_if_supported("-std=c++17")
-        //     .flag_if_supported("-w")
-        //     .compile("floui");
         let cmake_build_dir = out_dir.join("cmake_build").to_str().unwrap().to_string();
         let mut cmd = vec![];
         cmd.push(format!("-B{}", cmake_build_dir));
@@ -99,12 +94,13 @@ fn main() {
             .current_dir(".")
             .status()
             .expect("CMake is needed for android builds!");
-
         Command::new("cmake")
             .args(&["--build", &cmake_build_dir, "--target", "install"])
             .current_dir(".")
             .status()
             .expect("CMake is needed for android builds!");
+        println!("cargo:rustc-link-search=native={}", out_dir.display());
+        println!("cargo:rustc-link-lib=static=floui");
     } else {
         println!("cargo:warning=Building against the host jni!");
         let host = env::var("HOST").unwrap();
