@@ -23,6 +23,9 @@ pub fn from_id<T: 'static + WidgetExt + Clone>(id: &str) -> Option<T> {
 
 pub trait WidgetExt {
     fn inner(&self) -> *mut floui_sys::CWidget;
+    fn underlying(&self) -> *mut c_void {
+        unsafe { floui_sys::CWidget_inner(&mut *self.inner() as _) }
+    }
     fn from_widget_ptr(ptr: *mut floui_sys::CWidget) -> Self
     where
         Self: Sized;

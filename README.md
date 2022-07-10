@@ -30,7 +30,7 @@ extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void
         &Button::new("Increment").action(|_| log("Increment clicked")),
         &Text::new("0"),
         &Button::new("Decrement").action(|_| log("Increment clicked"))
-    ]).inner() as _
+    ]).underlying() as _
 }
 ```
 

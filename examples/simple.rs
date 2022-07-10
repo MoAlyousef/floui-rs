@@ -35,7 +35,7 @@ extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void
             }),
         ],
     )
-    .inner() as _
+    .underlying() as _
 }
 
 fn main() {}
