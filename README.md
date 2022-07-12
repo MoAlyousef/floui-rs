@@ -91,10 +91,11 @@ extern void *floui_main(void *, void *, void *);
 - Modify your CMakeLists.txt:
 ```cmake
 cmake_minimum_required(VERSION 3.4.1)
+project(myapplication)
 
 find_library(log-lib log)
 
-add_library(native-lib SHARED native-lib.cpp)
+add_library(myapplication STATIC native-lib.cpp)
 add_library(rust-lib STATIC IMPORTED)
 
 if (ANDROID_ABI STREQUAL x86)
@@ -112,7 +113,7 @@ endif ()
 set_property(TARGET rust-lib PROPERTY IMPORTED_LOCATION_DEBUG ${CMAKE_CURRENT_LIST_DIR}/app/target/${RUST_ARCH}/debug/libapp.a)
 set_property(TARGET rust-lib PROPERTY IMPORTED_LOCATION_RELEASE ${CMAKE_CURRENT_LIST_DIR}/app/target/${RUST_ARCH}/release/libapp.a)
 
-target_link_libraries(native-lib android rust-lib ${log-lib})
+target_link_libraries(myapplication android rust-lib ${log-lib} c++_static)
 ```
 - Modify your C++ file to just call the Rust lib.
 ```c++
