@@ -29,9 +29,19 @@ impl Text {
         Self { inner }
     }
 
-    pub fn text(&self, label: &str) -> &Text {
+    pub fn text(self, label: &str) -> Text {
         let label = std::ffi::CString::new(label).unwrap();
         unsafe { floui_sys::CText_text(*self.inner, label.as_ptr()) };
+        self
+    }
+
+    pub fn center(self) -> Text {
+        unsafe { floui_sys::CText_center(*self.inner) };
+        self
+    }
+
+    pub fn bold(self) -> Text {
+        unsafe { floui_sys::CText_bold(*self.inner) };
         self
     }
 }

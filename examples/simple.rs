@@ -27,7 +27,7 @@ extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void
                         t.text(&format!("{}", c));
                     }
                 }),
-            &Text::new("0").id("mytext"),
+            &Text::new("0").id("mytext").center().bold(),
             &Button::new("Decrement")
                 .foreground(Color::Red)
                 .action(move |_| {

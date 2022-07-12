@@ -1,8 +1,25 @@
 # floui-rs
 
-Rust bindings for [floui](https://github.com/MoAlyousef/floui).
+Rust bindings for [floui](https://github.com/MoAlyousef/floui), pronounced "flowy", a proof-of-concept single header C++17 lib inspired by SwiftUI, which wraps native iOS and Android controls/widgets, and integrates into the de facto build environments of each platform (XCode and Android Studio).
+
+## Currently available controls:
+- Text
+- TextField
+- Button
+- VStack (Vertical UIStackView on iOS and LinearLayout on Android)
+- HStack (Horizontal UIStackView on iOS and LinearLayout on Android)
+- Spacer
+- Toggle/Check (tvOS doesn't support it)
+- Slider (tvOS doesn't support it)
+- ImageView
+- WebView
+- ScrollView
 
 ## Usage
+You can check out the [floui-rs-template](https://github.com/MoAlyousef/floui-rs-template), which is structured to be able to build for both ios or android from the command-line.
+
+Otherwise, if you would like to do it manually:
+
 Build your library as a static-lib:
 ```toml
 # Cargo.toml
@@ -44,7 +61,7 @@ extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void
                         t.text(&format!("{}", c));
                     }
                 }),
-            &Text::new("0").id("mytext"),
+            &Text::new("0").id("mytext").center().bold(),
             &Button::new("Decrement")
                 .foreground(Color::Red)
                 .action(move |_| {
@@ -95,7 +112,7 @@ project(myapplication)
 
 find_library(log-lib log)
 
-add_library(myapplication STATIC native-lib.cpp)
+add_library(myapplication SHARED native-lib.cpp)
 add_library(rust-lib STATIC IMPORTED)
 
 if (ANDROID_ABI STREQUAL x86)
@@ -113,7 +130,7 @@ endif ()
 set_property(TARGET rust-lib PROPERTY IMPORTED_LOCATION_DEBUG ${CMAKE_CURRENT_LIST_DIR}/app/target/${RUST_ARCH}/debug/libapp.a)
 set_property(TARGET rust-lib PROPERTY IMPORTED_LOCATION_RELEASE ${CMAKE_CURRENT_LIST_DIR}/app/target/${RUST_ARCH}/release/libapp.a)
 
-target_link_libraries(myapplication android rust-lib ${log-lib} c++_static)
+target_link_libraries(myapplication android rust-lib ${log-lib})
 ```
 - Modify your C++ file to just call the Rust lib.
 ```c++
