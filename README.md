@@ -70,12 +70,12 @@ use std::os::raw::c_void;
 
 #[no_mangle]
 extern "C" fn floui_handle_events(arg1: *mut c_void) {
-    ViewController::handle_events(arg1);
+    unsafe { ViewController::handle_events(arg1); }
 }
 
 #[no_mangle]
 extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void) -> *mut c_void {
-    let vc = ViewController::new(arg1, arg2, arg3);
+    let vc = unsafe { ViewController::new(arg1, arg2, arg3) };
     mygui(&vc).underlying() as _
 }
 ```

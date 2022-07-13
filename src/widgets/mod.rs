@@ -1,12 +1,8 @@
-mod main_view;
-pub use main_view::*;
 mod button;
 pub use button::*;
 mod text;
 pub use text::*;
 mod stack;
 pub use stack::*;
-mod image_view;
-pub use image_view::*;
 mod misc;
 pub use misc::*;

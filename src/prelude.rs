@@ -62,13 +62,11 @@ pub struct ViewController {
 }
 
 impl ViewController {
-    pub fn new(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void) -> Self {
-        let inner = unsafe { Arc::new(floui_sys::CFlouiViewController_new(arg1, arg2, arg3)) };
+    pub unsafe fn new(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void) -> Self {
+        let inner = Arc::new(floui_sys::CFlouiViewController_new(arg1, arg2, arg3));
         Self { inner }
     }
-    pub fn handle_events(view: *mut c_void) {
-        unsafe {
-            floui_sys::CFlouiViewController_handle_events(view);
-        }
+    pub unsafe fn handle_events(view: *mut c_void) {
+        floui_sys::CFlouiViewController_handle_events(view);
     }
 }
