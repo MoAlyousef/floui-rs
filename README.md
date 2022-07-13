@@ -82,8 +82,24 @@ extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void
 }
 ```
 
+## Notes on certain usages
+- Adding images has to be in the project's resource file.
+    - In Android Studio: Resource Manager, Import Drawables. This will add the file to res/drawable. The file can be accessed directly ImageView("MyImage.jpg").
+    - In XCode: You can simply drag images into Assets.xcassets, then the image can be accessed directly ImageView("MyImage.jpg").
+
+- Using the WebView widget
+    - on iOS: 
+        - Requires adding WebKit.framework under General > Frameworks, Libraries and Embedded Content.
+        - Requires enabling the `ios-webview` flag in your Cargo.toml.
+        - Local files can be loaded using WebView::load_url() but need to be preceded by `file:///`, the files should be added to your xcode project.
+    - On Android:
+        - To load local files, precede them with `file:///` and the path of the file, which should be added to an assets folder (File > New > Folder > Assets folder). This then can be loaded using WebView::load_url().
+        - To load http requests, you need to enable the internet permission in your AndroidManifest.xml: <uses-permission android:name="android.permission.INTERNET" />
+
+## Target-specific structure
 ### iOS
 - Add the required ios rustup targets.
+- Install cargo-lipo.
 - Add the built library to your xcode project (under Build Phases > Link Binary with Libraries).
 - Modify the library search path to find the library (under Build Settings > Library Search Paths).
 - Modify your ViewController.m file:
