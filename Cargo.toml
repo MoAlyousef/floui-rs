@@ -2,6 +2,13 @@
 name = "floui"
 version = "0.1.0"
 edition = "2021"
+description = "A SwiftUI inspired native wrapper for iOS and Android widgets"
+repository = "https://github.com/MoAlyousef/floui-rs"
+documentation = "https://docs.rs/floui"
+keywords = ["gui", "ui", "widgets", "bindings", "graphics", "mobile"]
+categories = ["gui"]
+readme = "README.md"
+license = "MIT"
 
 [dependencies]
 floui-sys = { version = "0.1", path = "floui-sys" }
