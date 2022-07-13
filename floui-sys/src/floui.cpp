@@ -57,6 +57,48 @@ void CButton_filled(CButton *self) { ((Button *)self)->filled(); }
 
 void CButton_foreground(CButton *self, unsigned int c) { ((Button *)self)->foreground(c); }
 
+DEFINE_SHARED_METHODS(CToggle)
+
+CToggle *CToggle_new(const char *label) { return (CToggle *)new Toggle(label); }
+
+void CToggle_action(CToggle *self, CFlouiCallback cb, void *data) {
+    ((Toggle *)self)->action([=](Widget &) { (*cb)((CWidget *)self, data); });
+}
+
+void CToggle_set_value(CToggle *self, int val) { ((Toggle *)self)->value(val); }
+
+int CToggle_value(CToggle *self) { return ((Toggle *)self)->value(); }
+
+void CToggle_foreground(CToggle *self, unsigned int c) { ((Toggle *)self)->foreground(c); }
+
+DEFINE_SHARED_METHODS(CCheck)
+
+CCheck *CCheck_new(const char *label) { return (CCheck *)new Check(label); }
+
+void CCheck_action(CCheck *self, CFlouiCallback cb, void *data) {
+    ((Check *)self)->action([=](Widget &) { (*cb)((CWidget *)self, data); });
+}
+
+void CCheck_set_value(CCheck *self, int val) { ((Check *)self)->value(val); }
+
+int CCheck_value(CCheck *self) { return ((Check *)self)->value(); }
+
+void CCheck_foreground(CCheck *self, unsigned int c) { ((Check *)self)->foreground(c); }
+
+DEFINE_SHARED_METHODS(CSlider)
+
+CSlider *CSlider_new() { return (CSlider *)new Slider(); }
+
+void CSlider_action(CSlider *self, CFlouiCallback cb, void *data) {
+    ((Slider *)self)->action([=](Widget &) { (*cb)((CWidget *)self, data); });
+}
+
+void CSlider_set_value(CSlider *self, double val) { ((Slider *)self)->value(val); }
+
+double CSlider_value(CSlider *self) { return ((Slider *)self)->value(); }
+
+void CSlider_foreground(CSlider *self, unsigned int c) { ((Slider *)self)->foreground(c); }
+
 CText *CText_new(const char *label) { return (CText *)new Text(label); }
 
 DEFINE_SHARED_METHODS(CText)
@@ -87,3 +129,24 @@ CSpacer *CSpacer_new() { return (CSpacer *)new Spacer(); }
 
 DEFINE_SHARED_METHODS(CSpacer)
 
+DEFINE_SHARED_METHODS(CImageView)
+
+CImageView *CImageView_new() { return (CImageView *)new ImageView(); }
+
+CImageView *CImageView_load(const char *path) { return (CImageView *)new ImageView(path); }
+
+void CImageView_image(CImageView *self, const char *path) { ((ImageView *)self)->image(path); }
+
+DEFINE_SHARED_METHODS(CWebView)
+
+CWebView *CWebView_new() { return (CWebView *)new WebView(); }
+
+void CWebView_load_url(CWebView *self, const char *url) { ((WebView *)self)->load_url(url); }
+
+void CWebView_load_html(CWebView *self, const char *html) { ((WebView *)self)->load_html(html); }
+
+DEFINE_SHARED_METHODS(CScrollView)
+
+CScrollView *CScrollView_new(const CWidget *w) {
+    return (CScrollView *)new ScrollView(*(Widget *)w);
+}

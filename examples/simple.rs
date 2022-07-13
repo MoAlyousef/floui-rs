@@ -15,18 +15,16 @@ extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void
     MainView::new(
         &fvc,
         &[
-            &Button::new("Increment")
-                .foreground(Color::Blue)
-                .action({
-                    let count = count.clone();
-                    move |_| {
-                        log("Increment clicked");
-                        let mut c = count.borrow_mut();
-                        *c += 1;
-                        let t: Text = from_id("mytext").unwrap();
-                        t.text(&format!("{}", c));
-                    }
-                }),
+            &Button::new("Increment").foreground(Color::Blue).action({
+                let count = count.clone();
+                move |_| {
+                    log("Increment clicked");
+                    let mut c = count.borrow_mut();
+                    *c += 1;
+                    let t: Text = from_id("mytext").unwrap();
+                    t.text(&format!("{}", c));
+                }
+            }),
             &Text::new("0").id("mytext").center().bold(),
             &Button::new("Decrement")
                 .foreground(Color::Red)

@@ -1,6 +1,6 @@
+use crate::prelude::*;
 use floui_sys;
 use std::sync::Arc;
-use crate::prelude::*;
 
 #[derive(Clone)]
 pub struct MainView {
@@ -30,5 +30,23 @@ impl MainView {
             }
         }
         Self { inner }
+    }
+
+    pub fn add(&self, widget: &impl WidgetExt) {
+        unsafe {
+            floui_sys::CMainView_add(*self.inner, widget.inner());
+        }
+    }
+
+    pub fn remove(&self, widget: &impl WidgetExt) {
+        unsafe {
+            floui_sys::CMainView_remove(*self.inner, widget.inner());
+        }
+    }
+
+    pub fn clear(&self) {
+        unsafe {
+            floui_sys::CMainView_clear(*self.inner);
+        }
     }
 }

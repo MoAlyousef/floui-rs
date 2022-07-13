@@ -173,6 +173,110 @@ extern "C" {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+pub struct CToggle {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn CToggle_id(self_: *mut CToggle, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CToggle_background(self_: *mut CToggle, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CToggle_size(self_: *mut CToggle, w: ::std::os::raw::c_int, h: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CToggle_inner(self_: *mut CToggle) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn CToggle_new(label: *const ::std::os::raw::c_char) -> *mut CToggle;
+}
+extern "C" {
+    pub fn CToggle_action(
+        self_: *mut CToggle,
+        cb: CFlouiCallback,
+        data: *mut ::std::os::raw::c_void,
+    );
+}
+extern "C" {
+    pub fn CToggle_set_value(self_: *mut CToggle, val: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CToggle_value(self_: *mut CToggle) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn CToggle_foreground(self_: *mut CToggle, c: ::std::os::raw::c_uint);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CCheck {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn CCheck_id(self_: *mut CCheck, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CCheck_background(self_: *mut CCheck, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CCheck_size(self_: *mut CCheck, w: ::std::os::raw::c_int, h: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CCheck_inner(self_: *mut CCheck) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn CCheck_new(label: *const ::std::os::raw::c_char) -> *mut CCheck;
+}
+extern "C" {
+    pub fn CCheck_action(self_: *mut CCheck, cb: CFlouiCallback, data: *mut ::std::os::raw::c_void);
+}
+extern "C" {
+    pub fn CCheck_set_value(self_: *mut CCheck, val: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CCheck_value(self_: *mut CCheck) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn CCheck_foreground(self_: *mut CCheck, c: ::std::os::raw::c_uint);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CSlider {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn CSlider_id(self_: *mut CSlider, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CSlider_background(self_: *mut CSlider, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CSlider_size(self_: *mut CSlider, w: ::std::os::raw::c_int, h: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CSlider_inner(self_: *mut CSlider) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn CSlider_new() -> *mut CSlider;
+}
+extern "C" {
+    pub fn CSlider_action(
+        self_: *mut CSlider,
+        cb: CFlouiCallback,
+        data: *mut ::std::os::raw::c_void,
+    );
+}
+extern "C" {
+    pub fn CSlider_set_value(self_: *mut CSlider, val: f64);
+}
+extern "C" {
+    pub fn CSlider_value(self_: *mut CSlider) -> f64;
+}
+extern "C" {
+    pub fn CSlider_foreground(self_: *mut CSlider, c: ::std::os::raw::c_uint);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
 pub struct CText {
     _unused: [u8; 0],
 }
@@ -261,4 +365,84 @@ extern "C" {
 }
 extern "C" {
     pub fn CSpacer_new() -> *mut CSpacer;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CImageView {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn CImageView_id(self_: *mut CImageView, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CImageView_background(self_: *mut CImageView, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CImageView_size(
+        self_: *mut CImageView,
+        w: ::std::os::raw::c_int,
+        h: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub fn CImageView_inner(self_: *mut CImageView) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn CImageView_new() -> *mut CImageView;
+}
+extern "C" {
+    pub fn CImageView_load(path: *const ::std::os::raw::c_char) -> *mut CImageView;
+}
+extern "C" {
+    pub fn CImageView_image(self_: *mut CImageView, path: *const ::std::os::raw::c_char);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CWebView {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn CWebView_id(self_: *mut CWebView, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CWebView_background(self_: *mut CWebView, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CWebView_size(self_: *mut CWebView, w: ::std::os::raw::c_int, h: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn CWebView_inner(self_: *mut CWebView) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn CWebView_new() -> *mut CWebView;
+}
+extern "C" {
+    pub fn CWebView_load_url(self_: *mut CWebView, url: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CWebView_load_html(self_: *mut CWebView, html: *const ::std::os::raw::c_char);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CScrollView {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn CScrollView_id(self_: *mut CScrollView, id: *const ::std::os::raw::c_char);
+}
+extern "C" {
+    pub fn CScrollView_background(self_: *mut CScrollView, col: ::std::os::raw::c_uint);
+}
+extern "C" {
+    pub fn CScrollView_size(
+        self_: *mut CScrollView,
+        w: ::std::os::raw::c_int,
+        h: ::std::os::raw::c_int,
+    );
+}
+extern "C" {
+    pub fn CScrollView_inner(self_: *mut CScrollView) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    pub fn CScrollView_new(w: *const CWidget) -> *mut CScrollView;
 }

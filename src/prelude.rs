@@ -1,8 +1,10 @@
-use std::collections::HashMap;
 use std::any::Any;
-use std::sync::Mutex;
-use std::sync::Arc;
+use std::collections::HashMap;
 use std::os::raw::c_void;
+use std::sync::Arc;
+use std::sync::Mutex;
+
+use crate::enums::Color;
 
 lazy_static::lazy_static! {
     static ref WIDGET_MAP: Mutex<HashMap<&'static str, Box<dyn Any + Send + Sync + 'static>>> = Mutex::new(HashMap::default());
@@ -35,11 +37,21 @@ pub trait WidgetExt {
     fn from_widget_ptr(ptr: *mut floui_sys::CWidget) -> Self
     where
         Self: Sized;
-    fn id(self, id: &'static str) -> Self where Self: 'static + Sync + Sized + Clone + Send {
+    fn id(self, id: &'static str) -> Self
+    where
+        Self: 'static + Sync + Sized + Clone + Send,
+    {
         WIDGET_MAP
             .lock()
             .unwrap()
             .insert(id, Box::new(self.clone()));
+        self
+    }
+    fn background(self, col: Color) -> Self
+    where
+        Self: Sized,
+    {
+        unsafe { floui_sys::CWidget_background(self.inner(), col.0) }
         self
     }
 }
@@ -51,13 +63,7 @@ pub struct ViewController {
 
 impl ViewController {
     pub fn new(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void) -> Self {
-        let inner = unsafe {
-            Arc::new(floui_sys::CFlouiViewController_new(
-                arg1,
-                arg2,
-                arg3,
-            ))
-        };
+        let inner = unsafe { Arc::new(floui_sys::CFlouiViewController_new(arg1, arg2, arg3)) };
         Self { inner }
     }
     pub fn handle_events(view: *mut c_void) {
