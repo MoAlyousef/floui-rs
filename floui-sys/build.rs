@@ -24,6 +24,7 @@ fn main() {
         )
         .unwrap();
         println!("cargo:rustc-link-lib=framework=UIKit");
+        println!("cargo:rustc-link-lib=framework=WebKit");
         cc::Build::new()
             .file("src/floui.mm")
             .cpp(true)
