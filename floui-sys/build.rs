@@ -25,8 +25,11 @@ fn main() {
         .unwrap();
         println!("cargo:rustc-link-lib=framework=UIKit");
         println!("cargo:rustc-link-lib=framework=WebKit");
-        cc::Build::new()
-            .file("src/floui.mm")
+        let mut cc = cc::Build::new();
+        if cfg!(feature = "ios-webview") {
+            cc.define("FLOUI_IOS_WEBVIEW", None);
+        }
+        cc.file("src/floui.mm")
             .cpp(true)
             .flag_if_supported(&format!("-isysroot={}", sdk))
             .flag_if_supported("-std=c++17")

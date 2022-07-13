@@ -1,7 +1,6 @@
 #include "floui.h"
 
 #define FLOUI_IMPL
-#define FLOUI_IOS_WEBVIEW
 #include "../floui/floui.hpp"
 
 void Cfloui_log(const char *s) { floui_log(s); }

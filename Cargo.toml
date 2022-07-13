@@ -1,6 +1,6 @@
 [package]
 name = "floui"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A SwiftUI inspired native wrapper for iOS and Android widgets"
 repository = "https://github.com/MoAlyousef/floui-rs"
@@ -13,3 +13,6 @@ license = "MIT"
 [dependencies]
 floui-sys = { version = "0.1", path = "floui-sys" }
 lazy_static = "1.4"
+
+[features]
+ios-webview = ["floui-sys/ios-webview"]
