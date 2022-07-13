@@ -2,6 +2,8 @@
 
 Rust bindings for [floui](https://github.com/MoAlyousef/floui), pronounced "flowy", a proof-of-concept single header C++17 lib inspired by SwiftUI, which wraps native iOS and Android controls/widgets, and integrates into the de facto build environments of each platform (XCode and Android Studio).
 
+![image](https://user-images.githubusercontent.com/37966791/178625452-4edc4d01-157e-413c-9610-826a94f407e7.png)
+
 ## Currently available controls:
 - Text
 - TextField
