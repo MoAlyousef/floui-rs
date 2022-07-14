@@ -2,7 +2,7 @@ use crate::prelude::*;
 use floui_sys;
 use std::sync::Arc;
 
-
+/// Essentially a VStack, but takes the viewcontroller to initialize the view
 #[derive(Clone)]
 pub struct MainView {
     inner: Arc<*mut floui_sys::CMainView>,
@@ -23,6 +23,7 @@ impl WidgetExt for MainView {
 }
 
 impl MainView {
+    /// Constructs a new widget
     pub fn new(vc: &ViewController, widgets: &[&dyn WidgetExt]) -> Self {
         let inner = unsafe { Arc::new(floui_sys::CMainView_new(*vc.inner)) };
         for w in widgets {
@@ -33,18 +34,21 @@ impl MainView {
         Self { inner }
     }
 
+    /// Adds a widget
     pub fn add(&self, widget: &impl WidgetExt) {
         unsafe {
             floui_sys::CMainView_add(*self.inner, widget.inner());
         }
     }
 
+    /// Removes a widget
     pub fn remove(&self, widget: &impl WidgetExt) {
         unsafe {
             floui_sys::CMainView_remove(*self.inner, widget.inner());
         }
     }
 
+    /// Clears the widget
     pub fn clear(&self) {
         unsafe {
             floui_sys::CMainView_clear(*self.inner);
@@ -52,6 +56,7 @@ impl MainView {
     }
 }
 
+/// A vertical stack view
 #[derive(Clone)]
 pub struct VStack {
     inner: Arc<*mut floui_sys::CVStack>,
@@ -72,6 +77,7 @@ impl WidgetExt for VStack {
 }
 
 impl VStack {
+    /// Constructs a new widget
     pub fn new(widgets: &[&dyn WidgetExt]) -> Self {
         let inner = unsafe { Arc::new(floui_sys::CVStack_new()) };
         for w in widgets {
@@ -82,18 +88,21 @@ impl VStack {
         Self { inner }
     }
 
+    /// Adds a widget
     pub fn add(&self, widget: &impl WidgetExt) {
         unsafe {
             floui_sys::CVStack_add(*self.inner, widget.inner());
         }
     }
 
+    /// Removes a widget
     pub fn remove(&self, widget: &impl WidgetExt) {
         unsafe {
             floui_sys::CVStack_remove(*self.inner, widget.inner());
         }
     }
 
+    /// Clears the widget
     pub fn clear(&self) {
         unsafe {
             floui_sys::CVStack_clear(*self.inner);
@@ -101,6 +110,7 @@ impl VStack {
     }
 }
 
+/// A horizontal stack view
 #[derive(Clone)]
 pub struct HStack {
     inner: Arc<*mut floui_sys::CHStack>,
@@ -121,6 +131,7 @@ impl WidgetExt for HStack {
 }
 
 impl HStack {
+    /// Constructs a new widget
     pub fn new(widgets: &[&dyn WidgetExt]) -> Self {
         let inner = unsafe { Arc::new(floui_sys::CHStack_new()) };
         for w in widgets {
@@ -131,18 +142,21 @@ impl HStack {
         Self { inner }
     }
 
+    /// Adds a widget
     pub fn add(&self, widget: &impl WidgetExt) {
         unsafe {
             floui_sys::CHStack_add(*self.inner, widget.inner());
         }
     }
 
+    /// Removes a widget
     pub fn remove(&self, widget: &impl WidgetExt) {
         unsafe {
             floui_sys::CHStack_remove(*self.inner, widget.inner());
         }
     }
 
+    /// Clears the widget
     pub fn clear(&self) {
         unsafe {
             floui_sys::CHStack_clear(*self.inner);

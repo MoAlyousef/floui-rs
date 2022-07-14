@@ -83,9 +83,10 @@ extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void
 ```
 
 ## Notes on certain usages
+- Sliders on Android take the full width of the LinearLayout, so this must be taken into consideration if code is shared also with iOS.
 - Adding images has to be in the project's resource file.
-    - In Android Studio: Resource Manager, Import Drawables. This will add the file to res/drawable. The file can be accessed directly ImageView("MyImage.jpg").
-    - In XCode: You can simply drag images into Assets.xcassets, then the image can be accessed directly ImageView("MyImage.jpg").
+    - In Android Studio: Resource Manager, Import Drawables. This will add the file to res/drawable. The file can be accessed directly ImageView::load("MyImage.jpg").
+    - In XCode: You can simply drag images into Assets.xcassets, then the image can be accessed directly ImageView::load("MyImage.jpg").
 
 - Using the WebView widget
     - on iOS: 
@@ -94,7 +95,10 @@ extern "C" fn floui_main(arg1: *mut c_void, arg2: *mut c_void, arg3: *mut c_void
         - Local files can be loaded using WebView::load_url() but need to be preceded by `file:///`, the files should be added to your xcode project.
     - On Android:
         - To load local files, precede them with `file:///` and the path of the file, which should be added to an assets folder (File > New > Folder > Assets folder). This then can be loaded using WebView::load_url().
-        - To load http requests, you need to enable the internet permission in your AndroidManifest.xml: <uses-permission android:name="android.permission.INTERNET" />
+        - To load http requests, you need to enable the internet permission in your AndroidManifest.xml: `<uses-permission android:name="android.permission.INTERNET" />`
+
+## Creating new widgets
+Wrapping platform widgets doesn't require using C++, it requires that the widget implements WidgetExt, and the underlying (JNI jobject pointer for Android, UIView on iOS) can be retrieved. You can use the jni-rs crate and objc crates for such purposes.
 
 ## Target-specific structure
 ### iOS
