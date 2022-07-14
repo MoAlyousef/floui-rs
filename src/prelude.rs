@@ -19,7 +19,9 @@ pub fn log(s: &str) {
 }
 
 /// Obtain a specific widget from an id
-/// ```rust
+/// ```rust,no_run
+/// use floui::widgets::Text;
+/// use floui::prelude::from_id;
 /// let t: Text = from_id("mytext").unwrap();
 /// ```
 pub fn from_id<T: 'static + WidgetExt + Clone>(id: &str) -> Option<T> {
