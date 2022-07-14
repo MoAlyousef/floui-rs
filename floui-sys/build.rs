@@ -107,24 +107,24 @@ fn main() {
         println!("cargo:rustc-link-lib=static=floui");
     } else {
         println!("cargo:warning=Building against the host jni and current arch!");
-        let host = env::var("HOST").unwrap();
-        let host = if host.contains("windows") {
-            "win32"
-        } else if host.contains("apple-darwin") {
-            "darwin"
-        } else {
-            "linux"
-        };
-        let include_path = env::var("JAVA_HOME").expect("JAVA_HOME should be set!");
-        let include_path = PathBuf::from(include_path);
-        cc::Build::new()
-            .file("src/floui.cpp")
-            .cpp(true)
-            .include(include_path.join("include"))
-            .include(include_path.join(&format!("include/{}", host)))
-            .flag_if_supported("-std=c++17")
-            .flag_if_supported("-w")
-            .compile("floui");
+        // let host = env::var("HOST").unwrap();
+        // let host = if host.contains("windows") {
+        //     "win32"
+        // } else if host.contains("apple-darwin") {
+        //     "darwin"
+        // } else {
+        //     "linux"
+        // };
+        // let include_path = env::var("JAVA_HOME").expect("JAVA_HOME should be set!");
+        // let include_path = PathBuf::from(include_path);
+        // cc::Build::new()
+        //     .file("src/floui.cpp")
+        //     .cpp(true)
+        //     .include(include_path.join("include"))
+        //     .include(include_path.join(&format!("include/{}", host)))
+        //     .flag_if_supported("-std=c++17")
+        //     .flag_if_supported("-w")
+        //     .compile("floui");
     }
 }
 
