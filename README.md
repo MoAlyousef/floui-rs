@@ -20,6 +20,8 @@ Rust bindings for [floui](https://github.com/MoAlyousef/floui), pronounced "flow
 ## Usage
 You can check out the [floui-rs-template](https://github.com/MoAlyousef/floui-rs-template), which is structured to be able to build for both ios or android from the command-line.
 
+If you would like to build purely for iOS and only using Rust (no Objective-C), check the example [here](https://github.com/MoAlyousef/floui-rs-ios).
+
 Otherwise, if you would like to do it manually:
 
 Build your library as a static-lib:
