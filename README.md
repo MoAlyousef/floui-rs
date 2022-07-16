@@ -60,7 +60,7 @@ fn mygui(vc: &ViewController) -> MainView {
             &Button::new("Decrement")
                 .foreground(Color::Red)
                 .action(move |_| {
-                    log("Increment clicked");
+                    log("Decrement clicked");
                     let mut c = count.borrow_mut();
                     *c -= 1;
                     let t: Text = from_id("mytext").unwrap();
