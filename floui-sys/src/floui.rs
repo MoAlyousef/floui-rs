@@ -302,7 +302,19 @@ extern "C" {
     pub fn CText_center(self_: *mut CText);
 }
 extern "C" {
+    pub fn CText_left(self_: *mut CText);
+}
+extern "C" {
+    pub fn CText_right(self_: *mut CText);
+}
+extern "C" {
     pub fn CText_bold(self_: *mut CText);
+}
+extern "C" {
+    pub fn CText_italic(self_: *mut CText);
+}
+extern "C" {
+    pub fn CText_normal(self_: *mut CText);
 }
 extern "C" {
     pub fn CText_foreground(self_: *mut CText, c: ::std::os::raw::c_uint);
@@ -339,6 +351,12 @@ extern "C" {
 }
 extern "C" {
     pub fn CTextField_center(self_: *mut CTextField);
+}
+extern "C" {
+    pub fn CTextField_left(self_: *mut CTextField);
+}
+extern "C" {
+    pub fn CTextField_right(self_: *mut CTextField);
 }
 extern "C" {
     pub fn CTextField_foreground(self_: *mut CTextField, c: ::std::os::raw::c_uint);

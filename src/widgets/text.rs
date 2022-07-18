@@ -44,9 +44,33 @@ impl Text {
         self
     }
 
+    /// Adjusts to the left
+    pub fn left(self) -> Text {
+        unsafe { floui_sys::CText_left(*self.inner) };
+        self
+    }
+
+    /// Adjusts to the right
+    pub fn right(self) -> Text {
+        unsafe { floui_sys::CText_right(*self.inner) };
+        self
+    }
+
     /// Sets the text to be bold
     pub fn bold(self) -> Text {
         unsafe { floui_sys::CText_bold(*self.inner) };
+        self
+    }
+
+    /// Sets the text to be italic
+    pub fn italic(self) -> Text {
+        unsafe { floui_sys::CText_italic(*self.inner) };
+        self
+    }
+
+    /// Sets the text to be normal, the default
+    pub fn normal(self) -> Text {
+        unsafe { floui_sys::CText_normal(*self.inner) };
         self
     }
 
@@ -100,6 +124,18 @@ impl TextField {
     /// Centers the text
     pub fn center(self) -> TextField {
         unsafe { floui_sys::CTextField_center(*self.inner) };
+        self
+    }
+
+    /// Adjusts to the left
+    pub fn left(self) -> TextField {
+        unsafe { floui_sys::CTextField_left(*self.inner) };
+        self
+    }
+
+    /// Adjusts to the right
+    pub fn right(self) -> TextField {
+        unsafe { floui_sys::CTextField_right(*self.inner) };
         self
     }
 

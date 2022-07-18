@@ -107,7 +107,15 @@ void CText_text(CText *self, const char *t) { ((Text *)self)->text(t); }
 
 void CText_center(CText *self) { ((Text *)self)->center(); }
 
+void CText_left(CText *self) { ((Text *)self)->left(); }
+
+void CText_right(CText *self) { ((Text *)self)->right(); }
+
 void CText_bold(CText *self) { ((Text *)self)->bold(); }
+
+void CText_italic(CText *self) { ((Text *)self)->italic(); }
+
+void CText_normal(CText *self) { ((Text *)self)->normal(); }
 
 void CText_foreground(CText *self, unsigned int c) { ((Text *)self)->foreground(c); }
 
@@ -120,6 +128,10 @@ DEFINE_SHARED_METHODS(CTextField)
 void CTextField_text(CTextField *self, const char *t) { ((TextField *)self)->text(t); }
 
 void CTextField_center(CTextField *self) { ((TextField *)self)->center(); }
+
+void CTextField_left(CTextField *self) { ((TextField *)self)->left(); }
+
+void CTextField_right(CTextField *self) { ((TextField *)self)->right(); }
 
 void CTextField_foreground(CTextField *self, unsigned int c) { ((TextField *)self)->foreground(c); }
 

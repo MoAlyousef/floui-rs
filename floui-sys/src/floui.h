@@ -118,7 +118,15 @@ void CText_text(CText *self, const char *t);
 
 void CText_center(CText *self);
 
+void CText_left(CText *self);
+
+void CText_right(CText *self);
+
 void CText_bold(CText *self);
+
+void CText_italic(CText *self);
+
+void CText_normal(CText *self);
 
 void CText_foreground(CText *self, unsigned int c);
 
@@ -133,6 +141,10 @@ CTextField *CTextField_new();
 void CTextField_text(CTextField *self, const char *t);
 
 void CTextField_center(CTextField *self);
+
+void CTextField_left(CTextField *self);
+
+void CTextField_right(CTextField *self);
 
 void CTextField_foreground(CTextField *self, unsigned int c);
 
