@@ -12,7 +12,7 @@ pub struct Text {
 unsafe impl Sync for Text {}
 unsafe impl Send for Text {}
 
-impl WidgetExt for Text {
+unsafe impl WidgetExt for Text {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }
@@ -72,7 +72,7 @@ pub struct TextField {
 unsafe impl Sync for TextField {}
 unsafe impl Send for TextField {}
 
-impl WidgetExt for TextField {
+unsafe impl WidgetExt for TextField {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }

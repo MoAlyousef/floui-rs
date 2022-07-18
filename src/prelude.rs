@@ -37,7 +37,7 @@ pub fn from_id<T: 'static + WidgetExt + Clone>(id: &str) -> Option<T> {
 }
 
 /// Traits implemented by all widgets
-pub trait WidgetExt {
+pub unsafe trait WidgetExt {
     /// Gets the inner wrapper
     fn inner(&self) -> *mut floui_sys::CWidget;
     /// Gets the underlying pointer (JNI jobject on android, UIView on iOS)

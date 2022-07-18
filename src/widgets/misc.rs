@@ -12,7 +12,7 @@ pub struct Spacer {
 unsafe impl Sync for Spacer {}
 unsafe impl Send for Spacer {}
 
-impl WidgetExt for Spacer {
+unsafe impl WidgetExt for Spacer {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }
@@ -40,7 +40,7 @@ pub struct ScrollView {
 unsafe impl Sync for ScrollView {}
 unsafe impl Send for ScrollView {}
 
-impl WidgetExt for ScrollView {
+unsafe impl WidgetExt for ScrollView {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }
@@ -68,7 +68,7 @@ pub struct Slider {
 unsafe impl Sync for Slider {}
 unsafe impl Send for Slider {}
 
-impl WidgetExt for Slider {
+unsafe impl WidgetExt for Slider {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }
@@ -138,7 +138,7 @@ pub struct ImageView {
 unsafe impl Sync for ImageView {}
 unsafe impl Send for ImageView {}
 
-impl WidgetExt for ImageView {
+unsafe impl WidgetExt for ImageView {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }
@@ -184,7 +184,7 @@ pub struct WebView {
 unsafe impl Sync for WebView {}
 unsafe impl Send for WebView {}
 
-impl WidgetExt for WebView {
+unsafe impl WidgetExt for WebView {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }

@@ -11,7 +11,7 @@ pub struct MainView {
 unsafe impl Sync for MainView {}
 unsafe impl Send for MainView {}
 
-impl WidgetExt for MainView {
+unsafe impl WidgetExt for MainView {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }
@@ -65,7 +65,7 @@ pub struct VStack {
 unsafe impl Sync for VStack {}
 unsafe impl Send for VStack {}
 
-impl WidgetExt for VStack {
+unsafe impl WidgetExt for VStack {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }
@@ -119,7 +119,7 @@ pub struct HStack {
 unsafe impl Sync for HStack {}
 unsafe impl Send for HStack {}
 
-impl WidgetExt for HStack {
+unsafe impl WidgetExt for HStack {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }

@@ -11,7 +11,7 @@ pub struct Button {
 unsafe impl Sync for Button {}
 unsafe impl Send for Button {}
 
-impl WidgetExt for Button {
+unsafe impl WidgetExt for Button {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }
@@ -72,7 +72,7 @@ pub struct Toggle {
 unsafe impl Sync for Toggle {}
 unsafe impl Send for Toggle {}
 
-impl WidgetExt for Toggle {
+unsafe impl WidgetExt for Toggle {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }
@@ -143,7 +143,7 @@ pub struct Check {
 unsafe impl Sync for Check {}
 unsafe impl Send for Check {}
 
-impl WidgetExt for Check {
+unsafe impl WidgetExt for Check {
     fn inner(&self) -> *mut floui_sys::CWidget {
         *self.inner as _
     }

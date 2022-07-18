@@ -1,6 +1,6 @@
 [package]
 name = "floui"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2021"
 description = "A SwiftUI inspired native wrapper for iOS and Android widgets"
 repository = "https://github.com/MoAlyousef/floui-rs"
@@ -11,7 +11,7 @@ readme = "README.md"
 license = "MIT"
 
 [dependencies]
-floui-sys = { version = "0.1", path = "floui-sys" }
+floui-sys = { version = "=0.1.4", path = "floui-sys" }
 lazy_static = "1.4"
 
 [features]
